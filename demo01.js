@@ -8,7 +8,7 @@ var data = {
     'bob': { id: uuid.v4(), firstName: 'Bob' },
     'charlie': { id: uuid.v4(), firstName: 'Charlie' },
     'diane': { id: uuid.v4(), firstName: 'Diane' }
-}
+};
 
 function getData(key, callback) {
     var row = data[key];
