@@ -10,6 +10,12 @@ var data = {
     'diane': { id: uuid.v4(), firstName: 'Diane' }
 };
 
+function exists(key, callback) {
+    return setImmediate(function () {
+        return callback(!!data[key]);
+    });
+}
+
 function getData(key, callback) {
     var row = data[key];
     if (row) {
@@ -25,17 +31,21 @@ function getData(key, callback) {
 }
 
 q.nfcall(getData, 'bob').then(function (result) {
-    console.log('bob:', result);
+    console.log('nfcall getData bob:', result);
 });
 
 q.nfcall(getData, 'mike').catch(function (error) {
-    console.log('mike:', error);
+    console.log('nfcall getData mike:', error);
 });
 
 q.nfcall(getData, 'diane').then(function (error) {
-    console.log('diane:', error);
+    console.log('nfcall getData diane:', error);
 });
 
 q.nfcall(getData, 'jack').catch(function (error) {
-    console.log('mike:', error);
+    console.log('nfcall getData mike:', error);
+});
+
+q.call(exists, 'alice').then(function (res) {
+    console.log('call exists alice:', res);
 });
